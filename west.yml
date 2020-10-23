@@ -33,6 +33,9 @@ manifest:
       url-base: https://github.com/nanopb
     - name: alexa
       url-base: https://github.com/alexa
+    - name: jciupis
+      url-base: https://github.com/jciupis
+
 
   # If not otherwise specified, the projects below should be obtained
   # from the ncs remote.
@@ -70,7 +73,6 @@ manifest:
           - civetweb
           - edtt
           - fatfs
-          - hal_nordic
           - hal_st
           - libmetal
           - littlefs
@@ -90,6 +92,11 @@ manifest:
     #
     # Some of these are also Zephyr modules which have NCS-specific
     # changes.
+    - name: hal_nordic
+      repo-path: hal_nordic
+      revision: 878571afbbddedbd2c04968e5da0b71cff7fb2ed
+      path: modules/hal/nordic
+      remote: jciupis
     - name: mcuboot
       repo-path: sdk-mcuboot
       revision: c74627b65540fdb4105216361688199b6eceff4d
