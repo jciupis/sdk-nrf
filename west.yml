@@ -102,7 +102,7 @@ manifest:
     - name: nrfxlib
       repo-path: sdk-nrfxlib
       path: nrfxlib
-      revision: 24a347218dbd2dbc626f1ce85de9565137ad02cf
+      revision: pull/352/head
     # Other third-party repositories.
     - name: cmock
       path: test/cmock
