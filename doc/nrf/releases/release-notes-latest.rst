@@ -73,6 +73,7 @@ Thread
 
 * Optimized ROM and RAM used by Thread samples.
 * Disabled Hardware Flow Control on the serial port in :ref:`coap_client_sample` and :ref:`coap_server_sample` samples.
+* Add suport for nRF21540 FEM (front-end module) in samples.
 
 Zigbee
 ------
@@ -86,6 +87,8 @@ Zigbee
     * :ref:`lib_zigbee_application_utilities` library
     * :ref:`lib_zigbee_logger_endpoint` library
 
+  * PING shell command.
+
 * Updated:
 
   * Updated :ref:`zboss` to version ``3_3_0_6+11_30_2020``.
@@ -98,6 +101,8 @@ Bluetooth Mesh
 
   * Time client model callbacks for all message types.
   * Support for the nRF52833 DK in the :ref:`bluetooth_mesh_light` and :ref:`bluetooth_mesh_light_switch` samples.
+  * Added support for Light xyL models.
+  * Disable light control server when manual control has taken effect. This follow Mesh Model Specification section 6.2.3.
 
 nRF9160
 =======
@@ -221,6 +226,11 @@ The following list summarizes the most important changes inherited from upstream
   In this case, it was not possible to update the device and mcumgr would return error code 6 (``MGMT_ERR_EBADSTATE``).
 * Added support for invoking shell commands (shell management) from the mcumgr command line.
 
+
+Multiprotocol Service Layer (MPSL)
+==================================
+
+* The nRF53 has been modified to use SWI by default, instead of EGU.
 
 Zephyr
 ======
@@ -363,6 +373,12 @@ The following list summarizes the most important changes inherited from upstream
 
     * Added multiple ``nrfx_power``-related fixes to reduce power consumption.
 
+  * PWM:
+
+    * Changed GPIO configuration to Nordic HAL which allows support for GPIO  pins above 31.
+    * Added check if PWM period does not exceed 16-bit value to prevent broken behaviour.
+    * Changed PWM DT configuration to use timer phandle instead of previously used timer-instance.
+
   * Regulator:
 
     * Introduced a new regulator driver infrastructure.
@@ -407,6 +423,7 @@ The following list summarizes the most important changes inherited from upstream
     * Deprecated legacy TCP stack (TCP1).
     * Added multiple minor TCP2 bugfixes and improvements.
     * Added network management events for DHCPv4.
+    * Fixed getaddrinfo to actually respect socket type hints.
 
   * LwM2M:
 
@@ -435,7 +452,11 @@ The following list summarizes the most important changes inherited from upstream
       * :option:`CONFIG_OPENTHREAD_MAC_SOFTWARE_ACK_TIMEOUT_ENABLE`
       * :option:`CONFIG_OPENTHREAD_MAC_SOFTWARE_RETRANSMIT_ENABLE`
       * :option:`CONFIG_OPENTHREAD_PLATFORM_USEC_TIMER_ENABLE`
-      * :option:`CONFIG_OPENTHREAD_CONFIG_PLATFORM_INFO`
+      * :option:`CONFIG_OPENTHREAD_PLATFORM_INFO`
+      * :option:`CONFIG_OPENTHREAD_RADIO_LINK_IEEE_802_15_4_ENABLE`
+      * :option:`CONFIG_OPENTHREAD_RADIO_LINK_TREL_ENABLE`
+      * :option:`CONFIG_OPENTHREAD_CSL_SAMPLE_WINDOW`
+      * :option:`CONFIG_OPENTHREAD_CSL_RECEIVE_TIME_AHEAD`
 
   * MQTT:
 
@@ -500,7 +521,7 @@ The following list summarizes the most important changes inherited from upstream
 
   * Added :ref:`zephyr:nrf-ieee802154-rpmsg-sample`.
   * Added :ref:`zephyr:cloud-tagoio-http-post-sample`.
-  * Added :ref:`zephyr:sockets-civetweb-websocket-server-sample`.
+  * Added :ref:`zephyr:_civetweb-websocket-server-sample`.
   * :ref:`zephyr:led_ws2812_sample`: Updated to force SPIM on nRF52 DK.
   * :ref:`zephyr:cfb_custom_fonts`: Added support for ssd1306fb.
   * :ref:`zephyr:gsm-modem-sample`: Added suspend/resume shell commands.
